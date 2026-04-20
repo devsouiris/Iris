@@ -284,14 +284,16 @@ function HeroSection() {
           <motion.h1
             variants={fadeUp}
             custom={1}
-            className="text-6xl sm:text-7xl lg:text-[6rem] xl:text-[6.4rem] font-bold leading-[0.9] mb-8 font-[family-name:var(--font-space-grotesk)] text-white"
-            style={{ textShadow: '0 0 40px rgba(255,255,255,0.08), 0 0 80px rgba(255,255,255,0.04)' }}
+            className="text-6xl sm:text-7xl lg:text-[6rem] xl:text-[6.4rem] font-bold leading-[0.9] mb-8 font-[family-name:var(--font-space-grotesk)] text-white tracking-[-0.05em]"
           >
             DOMINE
             <br />
             <span className="whitespace-nowrap">O AMBIENTE</span>
             <br />
-            <span className="iris-gradient-text">DIGITAL.</span>
+            <span className="relative inline-block mt-2">
+              <span className="iris-gradient-text relative z-10">DIGITAL.</span>
+              <div className="absolute inset-0 top-1/2 -translate-y-1/2 bg-iris-orange/20 blur-[50px] rounded-full z-0 scale-x-125" />
+            </span>
           </motion.h1>
 
           <motion.p variants={fadeUp} custom={2} className="text-xl lg:text-[1.35rem] text-[#e8e6e3] max-w-[640px] mb-12 leading-[1.6] font-medium" style={{ textTransform: "none", letterSpacing: 0 }}>
