@@ -30,7 +30,7 @@ export async function sendContactRequest(formData: FormData) {
     return { success: true };
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return { success: false, error: error.errors[0].message };
+      return { success: false, error: error.issues[0].message };
     }
     console.error("Error saving contact request:", error);
     return { success: false, error: "Ocorreu um erro ao enviar sua mensagem. Tente novamente." };
