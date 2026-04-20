@@ -210,13 +210,15 @@ function Navbar() {
             <a
               key={l.label}
               href={l.href}
-              className="text-[0.85rem] font-bold tracking-[0.2em] text-white/90 hover:text-iris-orange transition-colors font-[family-name:var(--font-jetbrains-mono)]"
+              className="relative group text-[0.85rem] font-bold tracking-[0.2em] text-white/90 hover:text-white transition-colors font-[family-name:var(--font-jetbrains-mono)] overflow-hidden py-1"
             >
               {l.label}
+              <span className="absolute bottom-0 left-0 w-full h-[2px] bg-iris-orange -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-300 ease-out" />
             </a>
           ))}
-          <a href="#contato" className="text-[0.8rem] py-3 px-6 rounded-lg border border-iris-orange/50 bg-iris-orange/10 text-iris-orange font-bold tracking-[0.15em] uppercase font-[family-name:var(--font-space-grotesk)] hover:bg-iris-orange/20 hover:border-iris-orange/80 hover:shadow-[0_0_20px_rgba(217,119,47,0.25)] transition-all duration-300">
-            INICIAR PROJETO
+          <a href="#contato" className="group relative overflow-hidden text-[0.8rem] py-3 px-6 rounded-lg border border-iris-orange/50 bg-iris-orange/5 text-iris-orange font-bold tracking-[0.15em] uppercase font-[family-name:var(--font-space-grotesk)] hover:border-iris-orange/80 hover:shadow-[0_0_20px_rgba(217,119,47,0.25)] transition-all duration-300">
+            <span className="relative z-10 transition-colors duration-300 group-hover:text-[#0a0a0f]">INICIAR PROJETO</span>
+            <span className="absolute inset-0 bg-iris-orange translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300 ease-out z-0" />
           </a>
         </div>
 
@@ -391,9 +393,10 @@ function AboutSection() {
                 key={p.title}
                 variants={fadeUp}
                 custom={i * 2}
-                className="bg-transparent border border-iris-border-subtle p-6 sm:p-8 flex flex-col gap-5 hover:border-iris-orange/30 transition-colors"
+                className="group bg-[#0a0a0f]/50 border border-iris-border-subtle p-6 sm:p-8 flex flex-col gap-5 hover:border-iris-orange/40 hover:bg-[#0a0a0f] hover:-translate-y-1 hover:shadow-[0_10px_30px_-15px_rgba(217,119,47,0.2)] transition-all duration-500 overflow-hidden relative"
               >
-                <p.icon className="w-6 h-6 text-iris-orange" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-iris-orange/10 rounded-full blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <p.icon className="w-6 h-6 text-iris-orange group-hover:scale-110 transition-transform duration-500 relative z-10" />
                 <h3 className="text-sm md:text-base font-bold tracking-[0.15em] text-white font-[family-name:var(--font-space-grotesk)]">
                   {p.title}
                 </h3>
@@ -409,9 +412,10 @@ function AboutSection() {
                 key={p.title}
                 variants={fadeUp}
                 custom={(i * 2) + 1}
-                className="bg-transparent border border-iris-border-subtle p-6 sm:p-8 flex flex-col gap-5 hover:border-iris-orange/30 transition-colors"
+                className="group bg-[#0a0a0f]/50 border border-iris-border-subtle p-6 sm:p-8 flex flex-col gap-5 hover:border-iris-orange/40 hover:bg-[#0a0a0f] hover:-translate-y-1 hover:shadow-[0_10px_30px_-15px_rgba(217,119,47,0.2)] transition-all duration-500 overflow-hidden relative"
               >
-                <p.icon className="w-6 h-6 text-iris-orange" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-iris-orange/10 rounded-full blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <p.icon className="w-6 h-6 text-iris-orange group-hover:scale-110 transition-transform duration-500 relative z-10" />
                 <h3 className="text-sm md:text-base font-bold tracking-[0.15em] text-white font-[family-name:var(--font-space-grotesk)]">
                   {p.title}
                 </h3>
@@ -495,10 +499,11 @@ function ServicesSection() {
           className="grid md:grid-cols-3 gap-6"
         >
           {SERVICES.map((s, i) => (
-            <motion.div key={s.title} variants={fadeUp} custom={i} className="iris-card p-8 flex flex-col gap-6">
-              <div className="flex items-start justify-between">
-                <s.icon className="w-7 h-7 text-iris-orange" />
-                <s.icon className="w-5 h-5 text-iris-border opacity-40" />
+            <motion.div key={s.title} variants={fadeUp} custom={i} className="group iris-card p-8 flex flex-col gap-6 relative overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_40px_-15px_rgba(217,119,47,0.15)] hover:border-iris-orange/30">
+              <div className="absolute inset-0 bg-gradient-to-br from-iris-orange/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="flex items-start justify-between relative z-10">
+                <s.icon className="w-7 h-7 text-iris-orange group-hover:scale-110 transition-transform duration-500" />
+                <s.icon className="w-5 h-5 text-iris-border opacity-40 group-hover:text-iris-orange/20 transition-colors duration-500" />
               </div>
               <h3 className="text-base font-bold tracking-[0.1em] font-[family-name:var(--font-space-grotesk)]">
                 {s.title}
@@ -556,8 +561,8 @@ function MethodologySection() {
           className="flex flex-col gap-8"
         >
           {METHODOLOGY_STEPS.map((step, i) => (
-            <motion.div key={step.num} variants={fadeUp} custom={i} className="flex gap-6 items-start">
-              <div className="flex-shrink-0 w-14 h-14 rounded-lg border border-iris-border flex items-center justify-center text-iris-orange font-bold text-lg font-[family-name:var(--font-space-grotesk)]">
+            <motion.div key={step.num} variants={fadeUp} custom={i} className="group flex gap-6 items-start p-4 -ml-4 rounded-xl hover:bg-iris-surface-light border border-transparent hover:border-iris-border-subtle transition-all duration-300">
+              <div className="flex-shrink-0 w-14 h-14 rounded-lg border border-iris-border group-hover:border-iris-orange/50 group-hover:bg-iris-orange/10 flex items-center justify-center text-iris-orange font-bold text-lg font-[family-name:var(--font-space-grotesk)] transition-all duration-300 group-hover:scale-110">
                 {step.num}
               </div>
               <div>
@@ -600,9 +605,10 @@ function TechStackSection() {
               key={t.name}
               variants={fadeUp}
               custom={i}
-              className="bg-[#0a0a0f] border border-white/[0.08] hover:border-iris-orange/50 transition-colors duration-300 px-6 py-6 min-w-[140px] sm:min-w-[160px] flex flex-col items-center justify-center gap-1.5 group cursor-pointer"
+              className="bg-[#0a0a0f] border border-white/[0.08] hover:border-iris-orange/50 hover:-translate-y-1 hover:shadow-[0_10px_20px_-10px_rgba(217,119,47,0.2)] transition-all duration-500 px-6 py-6 min-w-[140px] sm:min-w-[160px] flex flex-col items-center justify-center gap-1.5 group cursor-default relative overflow-hidden"
             >
-              <span className="text-[1rem] sm:text-lg font-bold text-white group-hover:text-white transition-colors font-[family-name:var(--font-space-grotesk)]">
+              <div className="absolute inset-0 bg-gradient-to-t from-iris-orange/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <span className="relative z-10 text-[1rem] sm:text-lg font-bold text-white group-hover:text-iris-orange transition-colors duration-300 font-[family-name:var(--font-space-grotesk)]">
                 {t.name}
               </span>
               <p className="text-[0.6rem] tracking-[0.2em] text-[#d9772f]/80 font-bold font-[family-name:var(--font-jetbrains-mono)] uppercase mt-1">
@@ -757,8 +763,9 @@ function TestimonialsSection() {
           className="grid md:grid-cols-3 gap-6"
         >
           {TESTIMONIALS.map((t, i) => (
-            <motion.div key={i} variants={fadeUp} custom={i} className="iris-card p-8 flex flex-col">
-              <span className="text-2xl text-iris-orange font-bold mb-6">&ldquo;&rdquo;</span>
+            <motion.div key={i} variants={fadeUp} custom={i} className="group iris-card p-8 flex flex-col relative overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_40px_-15px_rgba(217,119,47,0.15)] hover:border-iris-orange/30">
+              <div className="absolute inset-0 bg-gradient-to-br from-iris-orange/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <span className="relative z-10 text-2xl text-iris-orange font-bold mb-6 group-hover:scale-125 origin-left transition-transform duration-500">&ldquo;&rdquo;</span>
               <p className="text-sm text-iris-text-muted leading-relaxed flex-1 mb-6" style={{ textTransform: "none", letterSpacing: 0 }}>
                 {t.text}
               </p>
