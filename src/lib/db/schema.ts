@@ -1,11 +1,11 @@
 import { pgTable, text, timestamp, varchar, uuid, boolean, jsonb } from "drizzle-orm/pg-core";
 
 /**
- * Users table - linked to Clerk user IDs.
+ * Users table - linked to Supabase Auth user IDs.
  */
 export const users = pgTable("users", {
   id: uuid("id").defaultRandom().primaryKey(),
-  clerkId: varchar("clerk_id", { length: 255 }).unique().notNull(),
+  supabaseId: uuid("supabase_id").unique().notNull(), // Linked to auth.users.id
   email: varchar("email", { length: 255 }).notNull(),
   name: varchar("name", { length: 255 }),
   imageUrl: text("image_url"),

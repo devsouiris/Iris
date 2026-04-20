@@ -10,11 +10,11 @@ All imported skills are located in [`.antigravity/skills/`](./.antigravity/skill
 | [ai-product](./.antigravity/skills/ai-product.md) | AI Core | Architecting RAG and agentic flows. |
 | [product-manager-toolkit](./.antigravity/skills/product-manager-toolkit.md) | Strategy | RICE prioritization and PRD standards. |
 | [nextjs-best-practices](./.antigravity/skills/nextjs-best-practices.md) | Tech Stack | App Router performance and RSC architecture. |
-| [clerk-auth](./.antigravity/skills/clerk-auth.md) | Auth | Enterprise-grade multi-tenancy and security. |
+| [nextjs-supabase-auth](./.antigravity/skills/nextjs-supabase-auth.md) | Auth | Integration of Supabase Auth with App Router. |
 | [shadcn](./.antigravity/skills/shadcn.md) | UI/UX | Component-driven design system. |
 | [high-end-visual-design](./.antigravity/skills/high-end-visual-design.md) | Design | $150k+ agency-level aesthetics. |
 | [stripe-integration](./.antigravity/skills/stripe-integration.md) | Business | Compliant checkout and subscription billing. |
-| [neon-postgres](./.antigravity/skills/neon-postgres.md) | Data | Serverless DB with instant branching. |
+| [supabase-automation](./.antigravity/skills/supabase-automation.md) | Data | Infrastructure automation and queries. |
 | [ai-seo](./.antigravity/skills/ai-seo.md) | Growth | Answer Engine Optimization (AEO). |
 
 ---
@@ -32,8 +32,8 @@ All imported skills are located in [`.antigravity/skills/`](./.antigravity/skill
 - [ ] **UI Core**: Set up `tailwind-v4`, `shadcn/ui`, and the `Double-Bezel` theme architecture.
 
 ### Phase 3: The First SaaS Component
-- [ ] **Auth Layer**: Implement Clerk middleware and custom `sign-in`/`sign-up` pages.
-- [ ] **DB Layer**: Initialize Drizzle ORM and connect to Neon Postgres.
+- [ ] **Auth Layer**: Implement Supabase Auth (Sign-in/Sign-up pages).
+- [ ] **DB Layer**: Initialize Drizzle ORM and connect to Supabase Postgres.
 - [ ] **Billing Layer**: Set up Stripe webhook handler and production-ready checkout flow.
 
 ---
