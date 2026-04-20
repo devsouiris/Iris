@@ -335,21 +335,29 @@ function HeroSection() {
             <div className="absolute -inset-0.5 rounded-full bg-gradient-to-br from-iris-orange/20 via-transparent to-iris-orange/10 blur-sm" />
             {/* Video container with pulsing border glow */}
             <motion.div
-              animate={{ boxShadow: ['0 0 20px rgba(217,119,47,0.1)', '0 0 40px rgba(217,119,47,0.2)', '0 0 20px rgba(217,119,47,0.1)'] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute inset-0 rounded-full overflow-hidden border border-iris-orange/25"
+              animate={{ 
+                boxShadow: [
+                  '0 0 30px rgba(217,119,47,0.1)', 
+                  '0 0 60px rgba(217,119,47,0.15)', 
+                  '0 0 30px rgba(217,119,47,0.1)'
+                ] 
+              }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute inset-0 rounded-full overflow-hidden border border-iris-orange/20 bg-[#06070b]"
             >
               <video
                 autoPlay
                 loop
                 muted
                 playsInline
-                className="w-full h-full object-cover scale-110"
+                className="w-full h-full object-cover scale-[1.05]"
               >
                 <source src="/video-2_AQ69cf5u.mp4" type="video/mp4" />
               </video>
-              {/* Gradient overlay on video */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#06070b]/80 via-transparent to-[#06070b]/30" />
+              
+              {/* Refined overlays for seamless blending */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#06070b] via-transparent to-transparent opacity-40 shrink-0" />
+              <div className="absolute inset-0 rounded-full shadow-[inset_0_0_60px_rgba(6,7,11,0.9)] pointer-events-none" />
             </motion.div>
             {/* Floating animated accents */}
             <motion.div
