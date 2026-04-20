@@ -196,7 +196,7 @@ function Navbar() {
         {/* Logo */}
         <a href="#inicio" className="flex items-center gap-1">
           <Image
-            src="/logo.jpeg"
+            src="/logo (2).png"
             alt="IRIS Agency"
             width={140}
             height={45}
@@ -262,11 +262,11 @@ function Navbar() {
 function HeroSection() {
   return (
     <section id="inicio" className="relative min-h-screen flex items-center pt-16 overflow-hidden">
-      <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center lg:justify-start">
-        {/* Glow behind text matching the reference framing */}
-        <div className="absolute top-[15%] left-[2%] w-[700px] h-[700px] rounded-full bg-iris-orange/20 blur-[180px] mix-blend-screen opacity-70" />
-        {/* Glow behind the orbital component */}
-        <div className="absolute top-1/2 right-[5%] -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-iris-orange/15 blur-[150px] mix-blend-screen opacity-80" />
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        {/* Concentrated illumination behind 'DIGITAL' (Red area 1) */}
+        <div className="absolute top-[45%] left-[10%] w-[600px] h-[500px] rounded-full bg-iris-orange/25 blur-[140px] mix-blend-screen opacity-60" />
+        {/* Concentrated illumination behind Orbital Circle (Red area 2) */}
+        <div className="absolute top-[50%] right-[12%] -translate-y-1/2 w-[550px] h-[550px] rounded-full bg-iris-orange/15 blur-[120px] mix-blend-screen opacity-100" />
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-iris-border to-transparent" />
       </div>
 
@@ -911,7 +911,7 @@ function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-1">
             <Image
-              src="/logo.jpeg"
+              src="/logo (2).png"
               alt="IRIS Agency"
               width={100}
               height={32}
