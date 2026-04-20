@@ -195,17 +195,23 @@ function Navbar() {
       <div className="max-w-[1400px] mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Logo */}
         <a href="#inicio" className="flex items-center gap-3 group">
-          <div className="relative w-14 h-11 overflow-hidden flex-shrink-0">
+          <div 
+            className="relative w-[98px] h-[57px] overflow-hidden flex-shrink-0"
+            style={{ 
+              clipPath: 'ellipse(50% 45% at 50% 50%)',
+              filter: 'drop-shadow(0 0 10px rgba(217, 119, 47, 0.2))'
+            }}
+          >
             <Image
               src="/logo (2).png"
               alt="Logo IRIS"
               width={300}
               height={100}
-              className="absolute left-[-2%] top-[-5%] h-[110%] w-auto max-w-none transition-transform group-hover:scale-110"
+              className="absolute left-[-10px] top-1/2 -translate-y-1/2 h-[110%] w-auto max-w-none transition-transform group-hover:scale-110 mix-blend-screen brightness-125 contrast-125"
               priority
             />
           </div>
-          <span className="text-2xl font-bold tracking-[0.15em] text-white font-[family-name:var(--font-space-grotesk)]">IRIS</span>
+          <span className="text-2xl font-bold tracking-[0.2em] font-[family-name:var(--font-space-grotesk)] iris-gradient-text">IRIS</span>
         </a>
 
         {/* Desktop Nav */}
@@ -915,16 +921,17 @@ function Footer() {
       <div className="max-w-[1400px] mx-auto px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <div className="relative w-10 h-8 overflow-hidden flex-shrink-0 opacity-80">
+            <div className="relative w-[96px] h-9 overflow-hidden flex-shrink-0 opacity-80">
               <Image
                 src="/logo (2).png"
                 alt="Logo IRIS"
                 width={150}
                 height={50}
-                className="absolute left-[-2%] top-[-5%] h-[110%] w-auto max-w-none"
+                className="absolute left-0 top-[-5%] h-[110%] w-auto max-w-none mix-blend-screen brightness-110 contrast-125"
+                style={{ maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 100%)', WebkitMaskImage: 'radial-gradient(ellipse at center, black 40%, transparent 100%)' }}
               />
             </div>
-            <span className="text-xl font-bold tracking-[0.1em] text-white font-[family-name:var(--font-space-grotesk)] opacity-90">IRIS</span>
+            <span className="text-xl font-bold tracking-[0.1em] font-[family-name:var(--font-space-grotesk)] iris-gradient-text opacity-90">IRIS</span>
           </div>
 
           <p className="text-xs text-iris-text-muted font-[family-name:var(--font-jetbrains-mono)]" style={{ textTransform: "none", letterSpacing: "0.02em" }}>
