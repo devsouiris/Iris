@@ -217,7 +217,7 @@ function Navbar() {
             </a>
           ))}
           <a href="#contato" className="group relative overflow-hidden text-[0.8rem] py-3 px-6 rounded-lg border border-iris-orange/50 bg-iris-orange/5 text-iris-orange font-bold tracking-[0.15em] uppercase font-[family-name:var(--font-space-grotesk)] hover:border-iris-orange/80 hover:shadow-[0_0_20px_rgba(217,119,47,0.25)] transition-all duration-300">
-            <span className="relative z-10 transition-colors duration-300 group-hover:text-[#0a0a0f]">INICIAR PROJETO</span>
+            <span className="relative z-10 transition-colors duration-300 group-hover:text-[#06070b]">INICIAR PROJETO</span>
             <span className="absolute inset-0 bg-iris-orange translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300 ease-out z-0" />
           </a>
         </div>
@@ -235,7 +235,7 @@ function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="lg:hidden bg-[#0a0a0f]/95 backdrop-blur-xl border-t border-white/[0.04] overflow-hidden"
+            className="lg:hidden bg-[#06070b]/95 backdrop-blur-xl border-t border-white/[0.04] overflow-hidden"
           >
             <div className="px-6 py-6 flex flex-col gap-4">
                {NAV_LINKS.map((l) => (
@@ -262,12 +262,11 @@ function Navbar() {
 function HeroSection() {
   return (
     <section id="inicio" className="relative min-h-screen flex items-center pt-16 overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* Orange glow behind text */}
-        <div className="absolute top-[20%] left-[-10%] w-[800px] h-[800px] rounded-full bg-iris-orange/20 blur-[200px] mix-blend-screen" />
-        {/* Orange glow behind circle */}
-        <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-iris-orange/15 blur-[150px] mix-blend-screen" />
+      <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center lg:justify-start">
+        {/* Glow behind text matching the reference framing */}
+        <div className="absolute top-[15%] left-[2%] w-[700px] h-[700px] rounded-full bg-iris-orange/20 blur-[180px] mix-blend-screen opacity-70" />
+        {/* Glow behind the orbital component */}
+        <div className="absolute top-1/2 right-[5%] -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-iris-orange/15 blur-[150px] mix-blend-screen opacity-80" />
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-iris-border to-transparent" />
       </div>
 
@@ -297,7 +296,7 @@ function HeroSection() {
           </motion.p>
 
           <motion.div variants={fadeUp} custom={3} className="flex flex-wrap gap-5">
-            <a href="#contato" className="bg-[#d9772f] hover:bg-[#e8924e] text-[#0a0a0f] text-base tracking-[0.08em] font-bold font-[family-name:var(--font-space-grotesk)] py-5 px-10 rounded-md flex items-center gap-4 transition-all hover:shadow-[0_0_30px_rgba(217,119,47,0.3)]">
+            <a href="#contato" className="bg-[#d9772f] hover:bg-[#e8924e] text-[#06070b] text-base tracking-[0.08em] font-bold font-[family-name:var(--font-space-grotesk)] py-5 px-10 rounded-md flex items-center gap-4 transition-all hover:shadow-[0_0_30px_rgba(217,119,47,0.3)]">
               ACESSAR CONSULTORIA <ChevronRight className="w-5 h-5 stroke-[2.5]" />
             </a>
             <a href="#cases" className="bg-transparent border border-white/20 hover:border-white/40 text-white text-base tracking-[0.08em] font-bold font-[family-name:var(--font-space-grotesk)] py-5 px-10 rounded-md transition-all flex items-center">
@@ -350,7 +349,7 @@ function HeroSection() {
                 <source src="/video-2_AQ69cf5u.mp4" type="video/mp4" />
               </video>
               {/* Gradient overlay on video */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/60 via-transparent to-[#0a0a0f]/30" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#06070b]/80 via-transparent to-[#06070b]/30" />
             </motion.div>
             {/* Floating animated accents */}
             <motion.div
@@ -393,7 +392,7 @@ function AboutSection() {
                 key={p.title}
                 variants={fadeUp}
                 custom={i * 2}
-                className="group bg-[#0a0a0f]/50 border border-iris-border-subtle p-6 sm:p-8 flex flex-col gap-5 hover:border-iris-orange/40 hover:bg-[#0a0a0f] hover:-translate-y-1 hover:shadow-[0_10px_30px_-15px_rgba(217,119,47,0.2)] transition-all duration-500 overflow-hidden relative"
+                className="group bg-[#06070b]/50 border border-iris-border-subtle p-6 sm:p-8 flex flex-col gap-5 hover:border-iris-orange/40 hover:bg-[#06070b] hover:-translate-y-1 hover:shadow-[0_10px_30px_-15px_rgba(217,119,47,0.2)] transition-all duration-500 overflow-hidden relative"
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-iris-orange/10 rounded-full blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <p.icon className="w-6 h-6 text-iris-orange group-hover:scale-110 transition-transform duration-500 relative z-10" />
@@ -412,7 +411,7 @@ function AboutSection() {
                 key={p.title}
                 variants={fadeUp}
                 custom={(i * 2) + 1}
-                className="group bg-[#0a0a0f]/50 border border-iris-border-subtle p-6 sm:p-8 flex flex-col gap-5 hover:border-iris-orange/40 hover:bg-[#0a0a0f] hover:-translate-y-1 hover:shadow-[0_10px_30px_-15px_rgba(217,119,47,0.2)] transition-all duration-500 overflow-hidden relative"
+                className="group bg-[#06070b]/50 border border-iris-border-subtle p-6 sm:p-8 flex flex-col gap-5 hover:border-iris-orange/40 hover:bg-[#06070b] hover:-translate-y-1 hover:shadow-[0_10px_30px_-15px_rgba(217,119,47,0.2)] transition-all duration-500 overflow-hidden relative"
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-iris-orange/10 rounded-full blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <p.icon className="w-6 h-6 text-iris-orange group-hover:scale-110 transition-transform duration-500 relative z-10" />
@@ -605,7 +604,7 @@ function TechStackSection() {
               key={t.name}
               variants={fadeUp}
               custom={i}
-              className="bg-[#0a0a0f] border border-white/[0.08] hover:border-iris-orange/50 hover:-translate-y-1 hover:shadow-[0_10px_20px_-10px_rgba(217,119,47,0.2)] transition-all duration-500 px-6 py-6 min-w-[140px] sm:min-w-[160px] flex flex-col items-center justify-center gap-1.5 group cursor-default relative overflow-hidden"
+              className="bg-[#06070b] border border-white/[0.08] hover:border-iris-orange/50 hover:-translate-y-1 hover:shadow-[0_10px_20px_-10px_rgba(217,119,47,0.2)] transition-all duration-500 px-6 py-6 min-w-[140px] sm:min-w-[160px] flex flex-col items-center justify-center gap-1.5 group cursor-default relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-t from-iris-orange/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <span className="relative z-10 text-[1rem] sm:text-lg font-bold text-white group-hover:text-iris-orange transition-colors duration-300 font-[family-name:var(--font-space-grotesk)]">
@@ -636,10 +635,10 @@ function StatsBanner() {
               {idx !== 0 && (
                 <div className="hidden lg:block absolute left-0 top-1/2 -translate-y-1/2 w-px h-[160px] bg-[#000000]/15" />
               )}
-              <span className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold text-[#0a0a0f] font-[family-name:var(--font-space-grotesk)] leading-none mb-6">
+              <span className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold text-[#06070b] font-[family-name:var(--font-space-grotesk)] leading-none mb-6">
                 {s.value}
               </span>
-              <p className="text-[0.65rem] sm:text-xs tracking-[0.2em] text-[#0a0a0f]/80 font-bold uppercase font-[family-name:var(--font-inter)]">
+              <p className="text-[0.65rem] sm:text-xs tracking-[0.2em] text-[#06070b]/80 font-bold uppercase font-[family-name:var(--font-inter)]">
                 {s.label}
               </p>
             </div>
@@ -708,7 +707,7 @@ function CasesSection() {
                   </div>
                 )}
                 
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-transparent opacity-60" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#06070b] via-transparent to-transparent opacity-60" />
                 
                 <div className="absolute bottom-4 left-4 flex items-center gap-2 z-10">
                   <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />

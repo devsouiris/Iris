@@ -14,8 +14,8 @@
   --color-iris-orange: #d9772f;
   --color-iris-orange-light: #e8924e;
   --color-iris-orange-dark: #b5601e;
-  --color-iris-bg: #0a0a0f;
-  --color-iris-surface: #0f1019;
+  --color-iris-bg: #06070b;
+  --color-iris-surface: #0a0c10;
   --color-iris-surface-light: #141520;
   --color-iris-border: rgba(217, 119, 47, 0.15);
   --color-iris-border-subtle: rgba(255, 255, 255, 0.06);
@@ -38,11 +38,11 @@
 }
 
 :root {
-  --background: #0a0a0f;
+  --background: #06070b;
   --foreground: #ffffff;
   --primary: #d9772f;
-  --primary-foreground: #0a0a0f;
-  --card: #0f1019;
+  --primary-foreground: #06070b;
+  --card: #0a0c10;
   --card-foreground: #ffffff;
   --border: rgba(255, 255, 255, 0.06);
   --muted: #141520;
@@ -133,7 +133,7 @@
     font-weight: 600;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: #0a0a0f;
+    color: #06070b;
     background: var(--color-iris-orange);
     border: none;
     border-radius: var(--radius-md);
@@ -183,9 +183,9 @@ body::before {
   position: fixed;
   inset: 0;
   background-image: 
-    linear-gradient(rgba(217, 119, 47, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(217, 119, 47, 0.035) 1px, transparent 1px);
-  background-size: 60px 60px;
+    linear-gradient(rgba(217, 119, 47, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(217, 119, 47, 0.045) 1px, transparent 1px);
+  background-size: 24px 24px;
   background-position: center top;
   pointer-events: none;
   z-index: -1;
@@ -210,7 +210,7 @@ body::after {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0f;
+  background: #06070b;
 }
 
 ::-webkit-scrollbar-thumb {

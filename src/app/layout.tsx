@@ -52,7 +52,7 @@ export default function RootLayout({
       className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
-      <body className="min-h-screen bg-[#0a0a0f] text-white text-[17px] antialiased overflow-x-hidden selection:bg-[#d9772f] selection:text-[#0a0a0f]">
+      <body className="min-h-screen bg-[#06070b] text-white text-[17px] antialiased overflow-x-hidden selection:bg-[#d9772f] selection:text-[#06070b]">
         {children}
         <Toaster position="top-right" theme="dark" richColors />
       </body>
