@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -247,58 +247,6 @@ function Navbar() {
   );
 }
 
-function PingPongVideo() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    let isReversing = false;
-    let reverseInterval: NodeJS.Timeout | null = null;
-
-    const handleTimeUpdate = () => {
-      // Quando faltar apenas 0.1s para terminar ou caso passe da duração
-      if (!isReversing && video.duration && video.currentTime >= video.duration - 0.1) {
-        isReversing = true;
-        video.pause();
-        
-        // Simulação de playbackRate = -1 decrementando suavemente o currentTime
-        reverseInterval = setInterval(() => {
-          if (video.currentTime <= 0.1) {
-            if (reverseInterval) clearInterval(reverseInterval);
-            isReversing = false;
-            video.play().catch(() => {});
-          } else {
-            video.currentTime -= 0.04;
-          }
-        }, 40); // 25 fps step backwards
-      }
-    };
-
-    // Prevenir loop nativo e engatilhar nossa reversão
-    video.loop = false;
-    video.addEventListener("timeupdate", handleTimeUpdate);
-
-    return () => {
-      video.removeEventListener("timeupdate", handleTimeUpdate);
-      if (reverseInterval) clearInterval(reverseInterval);
-    };
-  }, []);
-
-  return (
-    <video
-      ref={videoRef}
-      autoPlay
-      muted
-      playsInline
-      className="w-full h-full object-cover scale-110"
-    >
-      <source src="/videohero.mp4" type="video/mp4" />
-    </video>
-  );
-}
-
 function HeroSection() {
   return (
     <section id="inicio" className="relative min-h-screen flex items-center pt-16 overflow-hidden">
@@ -380,7 +328,15 @@ function HeroSection() {
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               className="absolute inset-0 rounded-full overflow-hidden border border-iris-orange/25"
             >
-              <PingPongVideo />
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover scale-110"
+              >
+                <source src="/video-2_AQ69cf5u.mp4" type="video/mp4" />
+              </video>
               {/* Gradient overlay on video */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/60 via-transparent to-[#0a0a0f]/30" />
             </motion.div>
