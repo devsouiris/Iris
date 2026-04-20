@@ -170,10 +170,26 @@
   }
 
   .iris-gradient-text {
-    background: linear-gradient(135deg, var(--color-iris-orange), var(--color-iris-orange-light));
+    background: linear-gradient(
+      90deg, 
+      #d9772f 0%, 
+      #f7d060 20%, 
+      #ffec99 50%, 
+      #f7d060 80%, 
+      #d9772f 100%
+    );
+    background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    filter: drop-shadow(0 0 1px rgba(217, 119, 47, 0.2));
+    animation: shine 8s linear infinite;
+  }
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
   }
 }
 
