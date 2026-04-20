@@ -121,24 +121,32 @@ const STATS_BANNER = [
 
 const CASES = [
   {
-    title: "NEXUS FINANÇAS",
-    tag: "PLATAFORMA WEB",
-    desc: "Dashboard financeiro em tempo real com integração de múltiplas APIs bancárias.",
+    title: "PORTFÓLIO TECHNOLÓGICO",
+    tag: "TERMINAL ECOSYSTEM",
+    desc: "Ecossistema disruptivo com interface terminal-level, infraestrutura serverless e performance otimizada para o padrão IRIS.",
+    image: "/case_portfolio.png",
+    link: "https://blackcivic.com.br/"
   },
   {
     title: "AURA E-COMMERCE",
     tag: "E-COMMERCE",
     desc: "Loja virtual headless com tempo de carregamento inferior a 1 segundo.",
+    image: null,
+    link: "#"
   },
   {
     title: "VANGUARD LOGÍSTICA",
     tag: "SISTEMA INTERNO",
     desc: "Software de automação de frotas reduzindo custos operacionais em 30%.",
+    image: null,
+    link: "#"
   },
   {
     title: "HORIZON CLÍNICAS",
     tag: "INSTITUCIONAL & AGENDAMENTO",
     desc: "Presença digital completa com sistema de agendamento automatizado.",
+    image: null,
+    link: "#"
   },
 ];
 
@@ -668,19 +676,42 @@ function CasesSection() {
           className="grid md:grid-cols-2 gap-6"
         >
           {CASES.map((c, i) => (
-            <motion.div key={c.title} variants={fadeUp} custom={i} className="iris-card overflow-hidden group">
-              {/* Image placeholder */}
-              <div className="h-60 bg-gradient-to-br from-iris-surface-light to-iris-surface relative">
-                <div className="absolute bottom-4 left-4 flex items-center gap-2">
+            <motion.a 
+              key={c.title} 
+              href={c.link}
+              target={c.link.startsWith('http') ? "_blank" : undefined}
+              rel={c.link.startsWith('http') ? "noopener noreferrer" : undefined}
+              variants={fadeUp} 
+              custom={i} 
+              className="iris-card overflow-hidden group block cursor-pointer"
+            >
+              {/* Image Container */}
+              <div className="h-64 bg-gradient-to-br from-iris-surface-light to-iris-surface relative overflow-hidden">
+                {c.image ? (
+                  <Image 
+                    src={c.image} 
+                    alt={c.title} 
+                    fill 
+                    className="object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center opacity-10">
+                    <Terminal className="w-16 h-16" />
+                  </div>
+                )}
+                
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-transparent opacity-60" />
+                
+                <div className="absolute bottom-4 left-4 flex items-center gap-2 z-10">
                   <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                  <span className="text-[0.6rem] tracking-[0.15em] text-green-400 font-[family-name:var(--font-jetbrains-mono)]">
-                    STATUS: ONLINE
+                  <span className="text-[0.6rem] tracking-[0.15em] text-green-400 font-[family-name:var(--font-jetbrains-mono)] font-bold">
+                    STATUS: OPERACIONAL
                   </span>
                 </div>
               </div>
               <div className="p-6">
                 <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-base font-bold tracking-[0.1em] font-[family-name:var(--font-space-grotesk)]">
+                  <h3 className="text-base font-bold tracking-[0.1em] font-[family-name:var(--font-space-grotesk)] group-hover:text-iris-orange transition-colors">
                     {c.title}
                   </h3>
                   <span className="text-[0.55rem] tracking-[0.15em] text-iris-text-muted border border-iris-border-subtle px-3 py-1 rounded font-[family-name:var(--font-jetbrains-mono)]">
@@ -690,8 +721,12 @@ function CasesSection() {
                 <p className="text-sm text-iris-text-muted" style={{ textTransform: "none", letterSpacing: 0 }}>
                   {c.desc}
                 </p>
+                
+                <div className="mt-4 flex items-center gap-2 text-[0.65rem] font-bold text-iris-orange/0 group-hover:text-iris-orange transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                  ACESSAR PROJETO <ArrowUpRight className="w-3 h-3" />
+                </div>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </motion.div>
       </div>
