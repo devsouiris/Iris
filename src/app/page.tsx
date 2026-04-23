@@ -363,7 +363,7 @@ function HeroSection() {
                 playsInline
                 className="w-full h-full object-cover scale-[1.05]"
               >
-                <source src="/video-2_AQ69cf5u.mp4" type="video/mp4" />
+                <source src="/sss.mp4" type="video/mp4" />
               </video>
               
               {/* Refined overlays for seamless blending */}
