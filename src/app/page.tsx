@@ -144,9 +144,9 @@ const CASES = [
     link: "#"
   },
   {
-    title: "HORIZON CLÍNICAS",
-    tag: "INSTITUCIONAL & AGENDAMENTO",
-    desc: "Presença digital completa com sistema de agendamento automatizado.",
+    title: "REINO DOS PETS",
+    tag: "PET CARE & VETERINARY",
+    desc: "Centro veterinário completo com sistema de agendamento online e gestão de cuidados animais, focado em performance e conversão.",
     image: null,
     link: "#"
   },
@@ -363,7 +363,7 @@ function HeroSection() {
                 playsInline
                 className="w-full h-full object-cover scale-[1.05]"
               >
-                <source src="/sss.mp4" type="video/mp4" />
+                <source src="/video-2_AQ69cf5u.mp4" type="video/mp4" />
               </video>
               
               {/* Refined overlays for seamless blending */}
