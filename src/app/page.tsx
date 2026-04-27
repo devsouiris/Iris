@@ -148,7 +148,7 @@ const CASES = [
     tag: "PET CARE & VETERINARY",
     desc: "Centro veterinário completo com sistema de agendamento online e gestão de cuidados animais, focado em performance e conversão.",
     image: "/case_reino_pets.png",
-    link: "/arquivos_de_operacao/petpal/index.html"
+    link: "/arquivos_de_operacao/reinodospets/index.html"
   },
 ];
 
@@ -194,10 +194,11 @@ function Navbar() {
     <nav className="absolute top-0 left-0 right-0 z-50 pt-4 bg-transparent">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="#inicio" className="flex items-center group">
+        <a href="#inicio" className="flex items-center gap-3 group">
           <div 
-            className="relative w-[110px] h-[65px] flex-shrink-0"
+            className="relative w-[98px] h-[57px] overflow-hidden flex-shrink-0"
             style={{ 
+              clipPath: 'ellipse(50% 45% at 50% 50%)',
               filter: 'drop-shadow(0 0 10px rgba(217, 119, 47, 0.2))'
             }}
           >
@@ -206,14 +207,11 @@ function Navbar() {
               alt="Logo IRIS"
               width={300}
               height={100}
-              className="absolute left-[-15px] top-1/2 -translate-y-1/2 h-[120%] w-auto max-w-none transition-transform group-hover:scale-110 mix-blend-screen brightness-125 contrast-125"
+              className="absolute left-[-10px] top-1/2 -translate-y-1/2 h-[110%] w-auto max-w-none transition-transform group-hover:scale-110 mix-blend-screen brightness-125 contrast-125"
               priority
             />
           </div>
-          <div className="flex items-center ml-[-5px]">
-            <span className="text-[2.6rem] font-[1000] text-white leading-none tracking-[-0.1em] mr-4 font-[family-name:var(--font-heading)]">IF</span>
-            <span className="text-3xl font-bold tracking-[0.25em] font-[family-name:var(--font-space-grotesk)] iris-gradient-text">IRIS</span>
-          </div>
+          <span className="text-2xl font-bold tracking-[0.2em] font-[family-name:var(--font-space-grotesk)] iris-gradient-text">IRIS</span>
         </a>
 
         {/* Desktop Nav */}
@@ -925,17 +923,22 @@ function Footer() {
       <div className="max-w-[1400px] mx-auto px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <div className="relative w-[96px] h-9 overflow-hidden flex-shrink-0 opacity-80">
+            <div 
+              className="relative w-[80px] h-[46px] overflow-hidden flex-shrink-0 opacity-90"
+              style={{ 
+                clipPath: 'ellipse(50% 45% at 50% 50%)',
+                filter: 'drop-shadow(0 0 8px rgba(217, 119, 47, 0.2))'
+              }}
+            >
               <Image
                 src="/logo (2).png"
                 alt="Logo IRIS"
-                width={150}
-                height={50}
-                className="absolute left-0 top-[-5%] h-[110%] w-auto max-w-none mix-blend-screen brightness-110 contrast-125"
-                style={{ maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 100%)', WebkitMaskImage: 'radial-gradient(ellipse at center, black 40%, transparent 100%)' }}
+                width={200}
+                height={70}
+                className="absolute left-[-8px] top-1/2 -translate-y-1/2 h-[110%] w-auto max-w-none mix-blend-screen brightness-125 contrast-125"
               />
             </div>
-            <span className="text-xl font-bold tracking-[0.1em] font-[family-name:var(--font-space-grotesk)] iris-gradient-text opacity-90">IRIS</span>
+            <span className="text-xl font-bold tracking-[0.15em] font-[family-name:var(--font-space-grotesk)] iris-gradient-text opacity-90">IRIS</span>
           </div>
 
           <p className="text-xs text-iris-text-muted font-[family-name:var(--font-jetbrains-mono)]" style={{ textTransform: "none", letterSpacing: "0.02em" }}>

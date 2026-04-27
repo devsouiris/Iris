@@ -89,6 +89,22 @@
         });
     }
 
+    /*=============================================
+    	=    		 Smooth Scroll  	         =
+    =============================================*/
+    $('.navigation a[href^="#"], .tgmobile__menu-outer .navigation a[href^="#"]').on('click', function(e) {
+        e.preventDefault();
+        var target = $(this).attr('href');
+        if ($(target).length) {
+            $('html, body').animate({
+                scrollTop: $(target).offset().top - 80
+            }, 1000);
+            if ($('body').hasClass('mobile-menu-visible')) {
+                $('body').removeClass('mobile-menu-visible');
+            }
+        }
+    });
+
 
     /*=============================================
     	=            Header Search            =
