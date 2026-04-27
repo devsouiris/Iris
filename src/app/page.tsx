@@ -705,10 +705,8 @@ function CasesSection({ onPreview }: { onPreview: (url: string) => void }) {
             <motion.div 
               key={c.title} 
               onClick={() => {
-                if (c.link.startsWith('/')) {
+                if (c.link !== '#') {
                   onPreview(c.link);
-                } else if (c.link !== '#') {
-                  window.open(c.link, '_blank');
                 }
               }}
               variants={fadeUp} 
