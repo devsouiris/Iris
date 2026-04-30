@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
@@ -32,7 +32,7 @@ const NAV_LINKS = [
   { label: "SOBRE", href: "#sobre" },
   { label: "SERVIÇOS", href: "#servicos" },
   { label: "METODOLOGIA", href: "#metodologia" },
-  { label: "CASES", href: "#cases" },
+  { label: "PROJETOS", href: "/projetos" },
   { label: "CONTATO", href: "#contato" },
 ];
 
@@ -123,6 +123,13 @@ const STATS_BANNER = [
 
 const CASES = [
   {
+    title: "MALLU PET",
+    tag: "E-COMMERCE & PET",
+    desc: "Plataforma de vendas e cuidados para pets, combinando estética premium com alta performance em conversão e experiência de usuário.",
+    image: "/case_mallupet.png",
+    link: "https://mallupet.com.br"
+  },
+  {
     title: "PORTFÓLIO TECHNOLÓGICO",
     tag: "TERMINAL ECOSYSTEM",
     desc: "Ecossistema disruptivo com interface terminal-level, infraestrutura serverless e performance otimizada para o padrão IRIS.",
@@ -130,11 +137,11 @@ const CASES = [
     link: "https://blackcivic.com.br/"
   },
   {
-    title: "AURA E-COMMERCE",
-    tag: "E-COMMERCE",
-    desc: "Loja virtual headless com tempo de carregamento inferior a 1 segundo.",
-    image: null,
-    link: "#"
+    title: "AGROFORGE",
+    tag: "E-COMMERCE & AGRO",
+    desc: "Plataforma de e-commerce focada no agronegócio, com alta performance e integração direta de ponta a ponta.",
+    image: "/case_agroforge2.png",
+    link: "https://agroforge-nextjs.vercel.app"
   },
   {
     title: "VANGUARD LOGÍSTICA",
@@ -310,7 +317,7 @@ function HeroSection() {
             <a href="#contato" className="bg-[#d9772f] hover:bg-[#e8924e] text-[#06070b] text-base tracking-[0.08em] font-bold font-[family-name:var(--font-space-grotesk)] py-5 px-10 rounded-md flex items-center gap-4 transition-all hover:shadow-[0_0_30px_rgba(217,119,47,0.3)]">
               ACESSAR CONSULTORIA <ChevronRight className="w-5 h-5 stroke-[2.5]" />
             </a>
-            <a href="#cases" className="bg-transparent border border-white/20 hover:border-white/40 text-white text-base tracking-[0.08em] font-bold font-[family-name:var(--font-space-grotesk)] py-5 px-10 rounded-md transition-all flex items-center">
+            <a href="/projetos" className="bg-transparent border border-white/20 hover:border-white/40 text-white text-base tracking-[0.08em] font-bold font-[family-name:var(--font-space-grotesk)] py-5 px-10 rounded-md transition-all flex items-center">
               VER PROJETOS
             </a>
           </motion.div>
@@ -672,26 +679,13 @@ function CasesSection({ onPreview }: { onPreview: (url: string) => void }) {
   return (
     <section id="cases" className="relative py-[96px] border-t border-iris-border-subtle">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-8">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={stagger}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6"
-        >
-          <div>
-            <motion.h2 variants={fadeUp} custom={0} className="text-3xl sm:text-4xl font-bold font-[family-name:var(--font-space-grotesk)]">
-              ARQUIVOS DE
-              <br />
-              <span className="iris-gradient-text">OPERAÇÃO</span>
-            </motion.h2>
-            <motion.p variants={fadeUp} custom={1} className="text-iris-text-muted mt-4 max-w-lg" style={{ textTransform: "none", letterSpacing: 0 }}>
-              Projetos recentes desenvolvidos sob o rigoroso padrão IRIS. Interfaces que dominam e sistemas que não falham.
-            </motion.p>
-          </div>
-          <motion.a variants={fadeUp} custom={2} href="#" className="iris-btn-outline shrink-0">
-            VER TODOS OS CASOS
-          </motion.a>
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={stagger} className="mb-20">
+          <motion.h2 variants={fadeUp} className="text-4xl sm:text-5xl font-bold font-[family-name:var(--font-space-grotesk)] text-white mb-6">
+            ARQUIVOS DE <span className="iris-gradient-text">OPERAÇÃO</span>
+          </motion.h2>
+          <motion.p variants={fadeUp} className="text-iris-text-muted max-w-2xl text-lg" style={{ textTransform: "none", letterSpacing: 0 }}>
+            Projetos reais. Impacto real. Como aplicamos nosso ecossistema em diferentes indústrias.
+          </motion.p>
         </motion.div>
 
         <motion.div
@@ -720,7 +714,7 @@ function CasesSection({ onPreview }: { onPreview: (url: string) => void }) {
                     src={c.image} 
                     alt={c.title} 
                     fill 
-                    className="object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100"
+                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100"
                   />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center opacity-10">
@@ -757,6 +751,17 @@ function CasesSection({ onPreview }: { onPreview: (url: string) => void }) {
             </motion.div>
           ))}
         </motion.div>
+        
+        <div className="flex justify-center mt-16 pt-8 border-t border-iris-border-subtle">
+          <a 
+            href="/projetos"
+            className="group relative overflow-hidden bg-transparent border border-iris-orange/30 hover:border-iris-orange text-iris-orange font-bold tracking-[0.15em] py-5 px-12 rounded-lg transition-all duration-500"
+          >
+            <span className="relative z-10 font-[family-name:var(--font-space-grotesk)] group-hover:text-black transition-colors duration-500">
+              VER TODOS OS PROJETOS
+            </span>
+          </a>
+        </div>
       </div>
     </section>
   );
@@ -990,12 +995,21 @@ export default function Home() {
 }
 
 function CasePreviewModal({ url, onClose }: { url: string; onClose: () => void }) {
+  const [viewMode, setViewMode] = useState<'web' | 'mobile'>('web');
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8 bg-[#06070b]/95 backdrop-blur-md"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4 lg:p-8 bg-[#06070b]/95 backdrop-blur-md"
       onClick={onClose}
     >
       <motion.div
@@ -1006,33 +1020,78 @@ function CasePreviewModal({ url, onClose }: { url: string; onClose: () => void }
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header/Toolbar */}
-        <div className="bg-iris-surface-light border-b border-iris-border px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="flex gap-1.5">
+        <div className="bg-iris-surface-light border-b border-iris-border px-3 sm:px-4 py-3 flex items-center justify-between gap-2 overflow-x-auto">
+          <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+            <div className="hidden sm:flex gap-1.5">
               <div className="w-3 h-3 rounded-full bg-red-500/50" />
               <div className="w-3 h-3 rounded-full bg-iris-orange/50" />
               <div className="w-3 h-3 rounded-full bg-green-500/50" />
             </div>
-            <div className="ml-4 px-3 py-1 bg-iris-surface border border-iris-border rounded-md text-[0.65rem] font-[family-name:var(--font-jetbrains-mono)] text-iris-text-muted flex items-center gap-2 min-w-[200px] sm:min-w-[400px]">
-              <Globe className="w-3 h-3" />
-              {url}
+
+            {/* View Mode Toggle */}
+            <div className="flex bg-iris-surface border border-iris-border p-1 rounded-lg">
+              <button
+                onClick={() => setViewMode('web')}
+                className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 rounded-md text-[0.6rem] sm:text-[0.65rem] font-bold transition-all ${
+                  viewMode === 'web' 
+                  ? 'bg-iris-orange text-black' 
+                  : 'text-iris-text-muted hover:text-white'
+                }`}
+              >
+                <Monitor className="w-3 h-3" />
+                WEB
+              </button>
+              <button
+                onClick={() => setViewMode('mobile')}
+                className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 rounded-md text-[0.6rem] sm:text-[0.65rem] font-bold transition-all ${
+                  viewMode === 'mobile' 
+                  ? 'bg-iris-orange text-black' 
+                  : 'text-iris-text-muted hover:text-white'
+                }`}
+              >
+                <Phone className="w-3 h-3" />
+                MOBILE
+              </button>
+            </div>
+
+            <div className="hidden md:flex ml-2 px-3 py-1 bg-iris-surface border border-iris-border rounded-md text-[0.65rem] font-[family-name:var(--font-jetbrains-mono)] text-iris-text-muted items-center gap-2 min-w-[200px] lg:min-w-[300px] truncate">
+              <Globe className="w-3 h-3 shrink-0" />
+              <span className="truncate">{url}</span>
             </div>
           </div>
           <button 
             onClick={onClose}
-            className="p-2 hover:bg-iris-surface rounded-lg transition-colors text-iris-text-muted hover:text-white"
+            className="p-1.5 sm:p-2 hover:bg-iris-surface rounded-lg transition-colors text-iris-text-muted hover:text-white shrink-0"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
         </div>
 
         {/* Content */}
-        <div className="flex-1 bg-white relative">
-          <iframe 
-            src={url} 
-            className="w-full h-full border-none"
-            title="Preview"
-          />
+        <div className={`flex-1 bg-[#0a0a0a] relative overflow-hidden flex items-center justify-center ${viewMode === 'mobile' ? 'py-4 sm:py-10' : ''}`}>
+          {viewMode === 'web' ? (
+            <iframe 
+              src={url} 
+              className="w-full h-full border-none bg-white"
+              title="Preview"
+            />
+          ) : (
+            <div className="relative w-full max-w-[414px] h-full max-h-[896px] sm:bg-black rounded-[2rem] sm:rounded-[3.5rem] sm:border-[14px] border-[#1a1a1a] shadow-[0_0_50px_rgba(0,0,0,0.6)] overflow-hidden flex flex-col my-auto shrink-0">
+              <div className="hidden sm:flex absolute top-0 left-1/2 -translate-x-1/2 w-[180px] h-[30px] bg-[#1a1a1a] rounded-b-[2rem] z-20 items-center justify-center">
+                <div className="w-12 h-1 bg-[#2a2a2a] rounded-full mt-1" />
+              </div>
+              
+              <div className="w-full h-full overflow-hidden relative bg-white sm:rounded-[2.5rem]">
+                <iframe 
+                  src={url} 
+                  className="w-full h-full border-none"
+                  title="Preview Mobile"
+                />
+              </div>
+
+              <div className="hidden sm:block absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1.5 bg-black/20 rounded-full z-20" />
+            </div>
+          )}
         </div>
       </motion.div>
     </motion.div>

@@ -234,3 +234,12 @@ body::before {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(217, 119, 47, 0.5);
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
