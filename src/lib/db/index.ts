@@ -1,13 +1,21 @@
-import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
+import { drizzle } from "drizzle-orm/postgres-js";
 import * as schema from "./schema";
 
-if (!process.env.DATABASE_URL) {
-  throw new Error("DATABASE_URL is missing");
+const databaseUrl = process.env.POSTGRES_URL ?? process.env.DATABASE_URL;
+
+if (!databaseUrl) {
+  throw new Error("POSTGRES_URL or DATABASE_URL is missing");
 }
 
-// Disable prefetch as it is not supported on Supabase pools (like Supavisor)
-const client = postgres(process.env.DATABASE_URL, { prepare: false });
+const sql = postgres(databaseUrl, {
+  max: 1,
+  prepare: false,
+  ssl: "require",
+});
 
-export const db = drizzle(client, { schema });
-
+/**
+ * Supabase Postgres through the transaction pooler.
+ * Prepared statements are disabled for pooler compatibility.
+ */
+export const db = drizzle(sql, { schema });
