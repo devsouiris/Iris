@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, varchar, uuid, boolean, jsonb } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, varchar, uuid, integer } from "drizzle-orm/pg-core";
 
 /**
  * Users table - linked to Supabase Auth user IDs.
@@ -48,6 +48,12 @@ export const contactRequests = pgTable("contact_requests", {
   message: text("message").notNull(),
   status: varchar("status", { length: 50 }).default("pending").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const contactRateLimits = pgTable("contact_rate_limits", {
+  originHash: varchar("origin_hash", { length: 64 }).primaryKey(),
+  windowStart: timestamp("window_start", { withTimezone: true }).defaultNow().notNull(),
+  requestCount: integer("request_count").notNull(),
 });
 
 export type User = typeof users.$inferSelect;

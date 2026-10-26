@@ -1,9 +1,12 @@
 "use server";
 
 import { db } from "./db";
-import { contactRequests } from "./db/schema";
+import { sql } from "drizzle-orm";
 import { z } from "zod";
 import nodemailer from "nodemailer";
+import { headers } from "next/headers";
+import { createHmac } from "node:crypto";
+import { isIP } from "node:net";
 
 const contactSchema = z.object({
   name: z.string().trim().min(2, "O nome é muito curto").max(120, "O nome é muito longo").refine((value) => !/[\r\n]/.test(value), "Nome inválido"),
@@ -40,14 +43,46 @@ export async function sendContactRequest(formData: FormData) {
 
   try {
     const validated = contactSchema.parse({ name, email, subject, message });
-    
-    // 1. Save to Database
-    await db.insert(contactRequests).values({
-      name: validated.name,
-      email: validated.email,
-      subject: validated.subject,
-      message: validated.message,
-    });
+
+    const requestHeaders = await headers();
+    const forwardedFor = requestHeaders.get("x-vercel-forwarded-for") ?? requestHeaders.get("x-forwarded-for");
+    const clientIp = forwardedFor?.split(",", 1)[0].trim();
+    if (!clientIp || !isIP(clientIp)) {
+      return { success: false, error: "Não foi possível verificar a origem do envio. Tente novamente." };
+    }
+
+    // Hash the IP with a server-only secret so the rate table stores no raw address.
+    const secret = process.env.CONTACT_RATE_LIMIT_SECRET ?? process.env.POSTGRES_URL ?? process.env.DATABASE_URL;
+    if (!secret) throw new Error("Rate limit secret is missing");
+    const originHash = createHmac("sha256", secret).update(clientIp).digest("hex");
+
+    // A single statement reserves one of two slots and stores the request atomically.
+    // The WHERE clause makes simultaneous submissions from the same IP safe.
+    const saved = await db.execute(sql`
+      WITH accepted AS (
+        INSERT INTO public.contact_rate_limits (origin_hash, window_start, request_count)
+        VALUES (${originHash}, now(), 1)
+        ON CONFLICT (origin_hash) DO UPDATE
+        SET request_count = CASE
+              WHEN contact_rate_limits.window_start <= now() - interval '24 hours' THEN 1
+              ELSE contact_rate_limits.request_count + 1
+            END,
+            window_start = CASE
+              WHEN contact_rate_limits.window_start <= now() - interval '24 hours' THEN now()
+              ELSE contact_rate_limits.window_start
+            END
+        WHERE contact_rate_limits.window_start <= now() - interval '24 hours'
+           OR contact_rate_limits.request_count < 2
+        RETURNING origin_hash
+      )
+      INSERT INTO public.contact_requests (name, email, subject, message)
+      SELECT ${validated.name}, ${validated.email}, ${validated.subject}, ${validated.message}
+      FROM accepted
+      RETURNING id
+    `);
+    if (saved.length === 0) {
+      return { success: false, error: "Limite de 2 mensagens por origem em 24 horas atingido. Tente novamente mais tarde." };
+    }
 
     // 2. Send Email (if credentials are set)
     if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
