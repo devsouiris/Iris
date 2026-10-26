@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
@@ -878,6 +878,7 @@ function ContactSection() {
               required
               name="name"
               type="text"
+              maxLength={120}
               placeholder="Seu nome"
               className="w-full bg-iris-surface border border-iris-border-subtle rounded-lg px-4 py-3 text-sm text-iris-text placeholder:text-iris-text-muted/50 focus:outline-none focus:border-iris-orange/50 transition-colors"
             />
@@ -885,6 +886,7 @@ function ContactSection() {
               required
               name="email"
               type="email"
+              maxLength={255}
               placeholder="Seu e-mail"
               className="w-full bg-iris-surface border border-iris-border-subtle rounded-lg px-4 py-3 text-sm text-iris-text placeholder:text-iris-text-muted/50 focus:outline-none focus:border-iris-orange/50 transition-colors"
             />
@@ -895,6 +897,7 @@ function ContactSection() {
             variants={fadeUp}
             custom={1}
             type="text"
+            maxLength={160}
             placeholder="Assunto"
             className="w-full bg-iris-surface border border-iris-border-subtle rounded-lg px-4 py-3 text-sm text-iris-text placeholder:text-iris-text-muted/50 focus:outline-none focus:border-iris-orange/50 transition-colors"
           />
@@ -903,6 +906,7 @@ function ContactSection() {
             name="message"
             variants={fadeUp}
             custom={2}
+            maxLength={5000}
             placeholder="Descreva seu projeto..."
             rows={5}
             className="w-full bg-iris-surface border border-iris-border-subtle rounded-lg px-4 py-3 text-sm text-iris-text placeholder:text-iris-text-muted/50 focus:outline-none focus:border-iris-orange/50 transition-colors resize-none"

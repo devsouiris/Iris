@@ -6,11 +6,21 @@ import { z } from "zod";
 import nodemailer from "nodemailer";
 
 const contactSchema = z.object({
-  name: z.string().min(2, "O nome é muito curto"),
-  email: z.string().email("E-mail inválido"),
-  subject: z.string().min(2, "O assunto é muito curto"),
-  message: z.string().min(10, "A mensagem deve ter pelo menos 10 caracteres"),
+  name: z.string().trim().min(2, "O nome é muito curto").max(120, "O nome é muito longo").refine((value) => !/[\r\n]/.test(value), "Nome inválido"),
+  email: z.email("E-mail inválido").max(255, "O e-mail é muito longo"),
+  subject: z.string().trim().min(2, "O assunto é muito curto").max(160, "O assunto é muito longo").refine((value) => !/[\r\n]/.test(value), "Assunto inválido"),
+  message: z.string().trim().min(10, "A mensagem deve ter pelo menos 10 caracteres").max(5000, "A mensagem é muito longa"),
 });
+
+function escapeHtml(value: string) {
+  return value.replace(/[&<>"']/g, (character) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+  })[character]!);
+}
 
 // Configure Nodemailer transporter
 // NOTE: For Gmail, use an App Password (https://myaccount.google.com/apppasswords)
@@ -41,8 +51,9 @@ export async function sendContactRequest(formData: FormData) {
 
     // 2. Send Email (if credentials are set)
     if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
-      await transporter.sendMail({
-        from: `"${validated.name}" <${process.env.EMAIL_USER}>`,
+      try {
+        await transporter.sendMail({
+        from: { name: validated.name, address: process.env.EMAIL_USER },
         to: "devsouiris@gmail.com",
         replyTo: validated.email,
         subject: `[CONTATO IRIS] ${validated.subject}`,
@@ -50,14 +61,17 @@ export async function sendContactRequest(formData: FormData) {
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
             <h2 style="color: #d9772f; border-bottom: 2px solid #d9772f; padding-bottom: 10px;">Novo Contato IRIS</h2>
-            <p><strong>Nome:</strong> ${validated.name}</p>
-            <p><strong>E-mail:</strong> ${validated.email}</p>
-            <p><strong>Assunto:</strong> ${validated.subject}</p>
+          <p><strong>Nome:</strong> ${escapeHtml(validated.name)}</p>
+          <p><strong>E-mail:</strong> ${escapeHtml(validated.email)}</p>
+          <p><strong>Assunto:</strong> ${escapeHtml(validated.subject)}</p>
             <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;" />
-            <p style="white-space: pre-wrap;">${validated.message}</p>
+          <p style="white-space: pre-wrap;">${escapeHtml(validated.message)}</p>
           </div>
         `,
-      });
+        });
+      } catch {
+        console.error("Contact saved, but notification email failed");
+      }
     }
 
     return { success: true };
