@@ -44,6 +44,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ## Database and authentication
 
 - The contact form writes to Supabase Postgres through the transaction pooler. Set `POSTGRES_URL` to the pooled connection string; `DATABASE_URL` remains a fallback for existing deployments. Keep this value server-side.
-- Supabase Auth uses `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`. The legacy `NEXT_PUBLIC_SUPABASE_ANON_KEY` is accepted as a fallback.
+- Supabase Auth prefers `NEXT_PUBLIC_IRIS_SUPABASE_URL` and `NEXT_PUBLIC_IRIS_SUPABASE_PUBLISHABLE_KEY` for the new IRIS Digital project. The standard `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, and legacy `NEXT_PUBLIC_SUPABASE_ANON_KEY` remain fallbacks for other environments. The IRIS-specific names avoid collision with write-only values from the previous Vercel setup.
 - The schema is recorded in `drizzle/0000_right_ravenous.sql` and `drizzle/0001_rapid_ikaris.sql`. Apply it once to a new database before directing production traffic there.
 - Keep database passwords and API secrets in Vercel environment variables or a gitignored local env file, never in the repository.
